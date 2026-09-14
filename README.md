@@ -26,7 +26,7 @@ npm run dev
 | Variable | Rôle |
 |---|---|
 | `RESEND_API_KEY` | Clé Resend. Absente → l'email est loggé en console, pas envoyé. |
-| `NEWSLETTER_FROM` | Expéditeur (domaine vérifié sur Resend, ou `onboarding@resend.dev` en test). |
+| `NEWSLETTER_FROM` | Expéditeur, optionnel (défaut `Cardusia <noreply@cardusia.com>`, domaine vérifié sur Resend). |
 | `NOTIFY_EMAIL` | Destinataire de la notification (défaut `zeghiche@gmail.com`). |
 | `ADMIN_PASSWORD` | Mot de passe du backoffice. |
 | `SESSION_SECRET` | Secret de signature du cookie admin. |
@@ -51,7 +51,6 @@ Le projet embarque un `Dockerfile` (Next.js en mode `standalone`) et un `railway
    | Variable | Valeur |
    |---|---|
    | `RESEND_API_KEY` | clé Resend |
-   | `NEWSLETTER_FROM` | `Cardusia <newsletter@votre-domaine.com>` (domaine vérifié sur Resend) |
    | `NOTIFY_EMAIL` | `zeghiche@gmail.com` |
    | `ADMIN_PASSWORD` | mot de passe fort |
    | `SESSION_SECRET` | chaîne aléatoire longue (`openssl rand -hex 32`) |

@@ -2,7 +2,7 @@ import "server-only";
 import { Resend } from "resend";
 
 const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL || "zeghiche@gmail.com";
-const FROM = process.env.NEWSLETTER_FROM || "Cardusia <onboarding@resend.dev>";
+const FROM = process.env.NEWSLETTER_FROM || "Cardusia <noreply@cardusia.com>";
 
 function escapeHtml(s: string): string {
   return s
