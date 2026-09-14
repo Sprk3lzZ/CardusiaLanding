@@ -102,36 +102,41 @@ body {
 .glow-ring {
   position: relative;
   border-radius: 9999px;
-  padding: 1px;
-  background: linear-gradient(120deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.22));
-  transition: box-shadow 0.4s ease;
 }
-.glow-ring::before {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  padding: 1px;
-  background: conic-gradient(from var(--angle, 0deg), transparent 0%, rgba(255, 255, 255, 0.9) 14%, transparent 30%);
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  animation: spin-angle 3.6s linear infinite;
-  pointer-events: none;
+@media (min-width: 640px) {
+  .glow-ring {
+    padding: 1px;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.22));
+    transition: box-shadow 0.4s ease;
+  }
+  .glow-ring::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: conic-gradient(from var(--angle, 0deg), transparent 0%, rgba(255, 255, 255, 0.9) 14%, transparent 30%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    animation: spin-angle 3.6s linear infinite;
+    pointer-events: none;
+  }
+  .glow-ring:focus-within::before,
+  .glow-ring:hover::before {
+    opacity: 1;
+  }
+  .glow-ring:focus-within {
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.2),
+      0 0 50px rgba(255, 255, 255, 0.08),
+      0 24px 60px -24px rgba(255, 255, 255, 0.25);
+  }
 }
-.glow-ring:focus-within::before,
-.glow-ring:hover::before {
-  opacity: 1;
-}
-.glow-ring:focus-within {
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.2),
-    0 0 50px rgba(255, 255, 255, 0.08),
-    0 24px 60px -24px rgba(255, 255, 255, 0.25);
-}
+
 @property --angle {
   syntax: "<angle>";
   initial-value: 0deg;

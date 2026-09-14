@@ -70,7 +70,7 @@ export default function SubscribeForm() {
             </label>
 
             <div className="glow-ring">
-              <div className="flex flex-col gap-2 rounded-full bg-[rgba(10,10,10,0.9)] p-1.5 backdrop-blur-xl sm:flex-row sm:items-center">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-2 sm:rounded-full sm:bg-[rgba(10,10,10,0.9)] sm:p-1.5 sm:backdrop-blur-xl">
                 <input
                   id={inputId}
                   type="email"
@@ -86,12 +86,12 @@ export default function SubscribeForm() {
                   }}
                   aria-invalid={status === "error" || undefined}
                   aria-describedby={message ? `${inputId}-msg` : undefined}
-                  className="h-12 flex-1 rounded-full bg-transparent px-5 text-[15px] text-fg placeholder:text-white/35 outline-none sm:h-13"
+                  className="h-14 w-full rounded-full border border-white/15 bg-[rgba(10,10,10,0.85)] px-5 text-base text-fg placeholder:text-white/35 outline-none backdrop-blur-xl transition focus:border-white/40 sm:h-13 sm:flex-1 sm:border-0 sm:bg-transparent sm:text-[15px] sm:backdrop-blur-none sm:focus:border-0"
                 />
                 <button
                   type="submit"
                   disabled={status === "loading"}
-                  className="btn-primary h-12 shrink-0 rounded-full px-7 font-display text-[15px] font-medium tracking-[-0.01em] text-black disabled:cursor-wait disabled:opacity-80 sm:h-13"
+                  className="btn-primary h-14 w-full shrink-0 rounded-full px-7 font-display text-base font-medium tracking-[-0.01em] text-black disabled:cursor-wait disabled:opacity-80 sm:h-13 sm:w-auto sm:text-[15px]"
                 >
                   <span className="relative z-10 inline-flex items-center gap-2">
                     {status === "loading" ? (
@@ -118,7 +118,7 @@ export default function SubscribeForm() {
               </label>
             </div>
 
-            <div className="mt-4 min-h-6 text-center text-sm">
+            <div className="mt-4 min-h-6 text-center text-[13px] sm:text-sm">
               <AnimatePresence mode="wait">
                 {message ? (
                   <motion.p

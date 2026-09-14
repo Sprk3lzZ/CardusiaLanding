@@ -70,6 +70,7 @@ export default function Particles() {
     };
 
     const onMove = (e: PointerEvent) => {
+      if (e.pointerType === "touch") return;
       mouse.tx = e.clientX;
       mouse.ty = e.clientY;
       mouse.active = true;
