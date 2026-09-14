@@ -1,0 +1,10 @@
+node_modules
+.next
+out
+data
+.env
+.env.local
+.git
+.claude
+*.md
+.DS_Store
