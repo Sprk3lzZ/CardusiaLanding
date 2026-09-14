@@ -29,5 +29,4 @@ COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 
 USER nextjs
 EXPOSE 3000
-VOLUME ["/data"]
 CMD ["node", "server.js"]
