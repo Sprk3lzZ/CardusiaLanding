@@ -16,11 +16,16 @@ let db: DatabaseSync | null = null;
 
 function getDb(): DatabaseSync {
   if (db) return db;
-  const dir = path.resolve(process.env.DATA_DIR || "./data");
+  // Sur Railway, RAILWAY_VOLUME_MOUNT_PATH pointe vers le volume persistant :
+  // il prime sur DATA_DIR pour éviter d'écrire dans le conteneur (données perdues).
+  const dir = path.resolve(
+    process.env.RAILWAY_VOLUME_MOUNT_PATH || process.env.DATA_DIR || "./data",
+  );
   const file = path.join(dir, "subscribers.db");
   try {
     mkdirSync(dir, { recursive: true });
     db = new DatabaseSync(file);
+    console.log(`[db] base SQLite : ${file}`);
   } catch (err) {
     console.error(`[db] impossible d'ouvrir la base SQLite ${file} (vérifier le volume et ses permissions) :`, err);
     throw err;

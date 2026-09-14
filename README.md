@@ -55,7 +55,8 @@ Le projet embarque un `Dockerfile` (Next.js en mode `standalone`) et un `railway
    | `ADMIN_PASSWORD` | mot de passe fort |
    | `SESSION_SECRET` | chaîne aléatoire longue (`openssl rand -hex 32`) |
 
-   `DATA_DIR=/data` et `PORT` sont déjà gérés par le Dockerfile / Railway.
+   Ne définis **pas** `DATA_DIR` dans Railway : le code utilise automatiquement le chemin du volume
+   (`RAILWAY_VOLUME_MOUNT_PATH`). `PORT` est fourni par Railway.
 4. **Domaine** : onglet *Settings* → *Networking* → *Generate Domain* (ou domaine custom).
 
 Le healthcheck pointe sur `/`. Les logs d'envoi d'email sont visibles dans *Deployments → Logs*.
