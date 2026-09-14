@@ -39,13 +39,22 @@ export async function POST(req: Request) {
   }
 
   const userAgent = req.headers.get("user-agent");
-  const result = insertSubscriber(email, { ip, userAgent });
 
-  if (result.status === "created") {
-    const { total } = getStats();
-    const sent = await sendSignupNotification({ email, total, ip, userAgent });
-    if (sent) markNotified(result.id);
+  try {
+    const result = insertSubscriber(email, { ip, userAgent });
+
+    if (result.status === "created") {
+      const { total } = getStats();
+      const sent = await sendSignupNotification({ email, total, ip, userAgent });
+      if (sent) markNotified(result.id);
+    }
+
+    return NextResponse.json({ ok: true, status: result.status });
+  } catch (err) {
+    console.error("[subscribe] échec de l'inscription :", err);
+    return NextResponse.json(
+      { ok: false, error: "Erreur serveur lors de l'enregistrement. Réessayez plus tard." },
+      { status: 500 },
+    );
   }
-
-  return NextResponse.json({ ok: true, status: result.status });
 }

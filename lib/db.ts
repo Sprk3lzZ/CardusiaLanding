@@ -17,8 +17,14 @@ let db: DatabaseSync | null = null;
 function getDb(): DatabaseSync {
   if (db) return db;
   const dir = path.resolve(process.env.DATA_DIR || "./data");
-  mkdirSync(dir, { recursive: true });
-  db = new DatabaseSync(path.join(dir, "subscribers.db"));
+  const file = path.join(dir, "subscribers.db");
+  try {
+    mkdirSync(dir, { recursive: true });
+    db = new DatabaseSync(file);
+  } catch (err) {
+    console.error(`[db] impossible d'ouvrir la base SQLite ${file} (vérifier le volume et ses permissions) :`, err);
+    throw err;
+  }
   db.exec(`
     PRAGMA journal_mode = WAL;
     CREATE TABLE IF NOT EXISTS subscribers (

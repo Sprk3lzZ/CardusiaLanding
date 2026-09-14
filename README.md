@@ -55,7 +55,6 @@ Le projet embarque un `Dockerfile` (Next.js en mode `standalone`) et un `railway
    | `NOTIFY_EMAIL` | `zeghiche@gmail.com` |
    | `ADMIN_PASSWORD` | mot de passe fort |
    | `SESSION_SECRET` | chaîne aléatoire longue (`openssl rand -hex 32`) |
-   | `RAILWAY_RUN_UID` | `0` — le volume est monté en root, cette variable permet au conteneur d'y écrire |
 
    `DATA_DIR=/data` et `PORT` sont déjà gérés par le Dockerfile / Railway.
 4. **Domaine** : onglet *Settings* → *Networking* → *Generate Domain* (ou domaine custom).

@@ -20,13 +20,13 @@ ENV PORT=3000
 # Base SQLite : monter un volume Railway sur /data
 ENV DATA_DIR=/data
 
-RUN addgroup -S nodejs && adduser -S nextjs -G nodejs \
-  && mkdir -p /data && chown nextjs:nodejs /data
+# Le conteneur tourne en root : les volumes Railway sont montés en root et
+# doivent rester accessibles en écriture pour SQLite.
+RUN mkdir -p /data
 
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-COPY --from=builder --chown=nextjs:nodejs /app/public ./public
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/public ./public
 
-USER nextjs
 EXPOSE 3000
 CMD ["node", "server.js"]
